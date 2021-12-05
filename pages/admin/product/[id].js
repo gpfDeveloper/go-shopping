@@ -1,6 +1,7 @@
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+import slugify from 'slugify';
 import React, { useEffect, useContext, useReducer, useState } from 'react';
 import {
   Grid,
@@ -82,11 +83,23 @@ function ProductEdit() {
     control,
     formState: { errors },
     setValue,
+    watch,
   } = useForm();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [isFeatured, setIsFeatured] = useState(false);
-
   const { userInfo } = state;
+
+  const [productName, productBrand, productCategory] = watch([
+    'name',
+    'brand',
+    'category',
+  ]);
+  let slug;
+  if (productName && productBrand && productCategory) {
+    slug = productName + '-' + productBrand + '-' + productCategory;
+    slug = slugify(slug);
+    setValue('slug', slug);
+  }
 
   useEffect(() => {
     if (!productId) return;
@@ -157,9 +170,9 @@ function ProductEdit() {
 
   const submitHandler = async ({
     name,
-    slug,
     price,
     category,
+    slug,
     image,
     featuredImage,
     brand,
@@ -238,7 +251,7 @@ function ProductEdit() {
                     </ListItem>
                     <ListItem>
                       <Controller
-                        name="slug"
+                        name="category"
                         control={control}
                         defaultValue=""
                         rules={{
@@ -248,10 +261,50 @@ function ProductEdit() {
                           <TextField
                             variant="outlined"
                             fullWidth
+                            id="category"
+                            label="Category"
+                            error={Boolean(errors.category)}
+                            helperText={
+                              errors.category ? 'Category is required' : ''
+                            }
+                            {...field}
+                          ></TextField>
+                        )}
+                      ></Controller>
+                    </ListItem>
+                    <ListItem>
+                      <Controller
+                        name="brand"
+                        control={control}
+                        defaultValue=""
+                        rules={{
+                          required: true,
+                        }}
+                        render={({ field }) => (
+                          <TextField
+                            variant="outlined"
+                            fullWidth
+                            id="brand"
+                            label="Brand"
+                            error={Boolean(errors.brand)}
+                            helperText={errors.brand ? 'Brand is required' : ''}
+                            {...field}
+                          ></TextField>
+                        )}
+                      ></Controller>
+                    </ListItem>
+                    <ListItem>
+                      <Controller
+                        name="slug"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                          <TextField
+                            variant="outlined"
+                            fullWidth
+                            disabled
                             id="slug"
                             label="Slug"
-                            error={Boolean(errors.slug)}
-                            helperText={errors.slug ? 'Slug is required' : ''}
                             {...field}
                           ></TextField>
                         )}
@@ -345,7 +398,6 @@ function ProductEdit() {
                             )}
                           ></Controller>
                         </ListItem>
-
                         <ListItem>
                           <Button variant="contained" component="label">
                             Upload Featured Image
@@ -361,50 +413,6 @@ function ProductEdit() {
                         </ListItem>
                       </>
                     )}
-                    <ListItem>
-                      <Controller
-                        name="category"
-                        control={control}
-                        defaultValue=""
-                        rules={{
-                          required: true,
-                        }}
-                        render={({ field }) => (
-                          <TextField
-                            variant="outlined"
-                            fullWidth
-                            id="category"
-                            label="Category"
-                            error={Boolean(errors.category)}
-                            helperText={
-                              errors.category ? 'Category is required' : ''
-                            }
-                            {...field}
-                          ></TextField>
-                        )}
-                      ></Controller>
-                    </ListItem>
-                    <ListItem>
-                      <Controller
-                        name="brand"
-                        control={control}
-                        defaultValue=""
-                        rules={{
-                          required: true,
-                        }}
-                        render={({ field }) => (
-                          <TextField
-                            variant="outlined"
-                            fullWidth
-                            id="brand"
-                            label="Brand"
-                            error={Boolean(errors.brand)}
-                            helperText={errors.brand ? 'Brand is required' : ''}
-                            {...field}
-                          ></TextField>
-                        )}
-                      ></Controller>
-                    </ListItem>
                     <ListItem>
                       <Controller
                         name="countInStock"
@@ -456,7 +464,6 @@ function ProductEdit() {
                         )}
                       ></Controller>
                     </ListItem>
-
                     <ListItem>
                       <Button
                         variant="contained"
