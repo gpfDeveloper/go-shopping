@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
-// import router from 'next/router';
 import { Grid } from '@mui/material';
 import { Store } from 'store/Store';
 import ProductItem from './ProductItem';
@@ -19,12 +18,11 @@ export default function Products({ products }) {
       return;
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-    // router.push('/cart');
   };
   return (
     <Grid container spacing={3}>
       {products.map((product) => (
-        <Grid item md={4} key={product.name}>
+        <Grid item md={4} key={product._id}>
           <ProductItem product={product} addToCartHandler={addToCartHandler} />
         </Grid>
       ))}
