@@ -1,7 +1,6 @@
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import NextLink from 'next/link';
 import React, { useEffect, useContext, useReducer } from 'react';
 import {
   CircularProgress,
@@ -11,18 +10,13 @@ import {
   Typography,
   Card,
   Button,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
 } from '@mui/material';
 import { getError } from 'utils/error';
 import { Store } from 'store/Store';
 import Layout from 'components/layouts/Layout';
 import { useSnackbar } from 'notistack';
 import AdminNav from 'components/admin/AdminNav';
+import ProductTable from 'components/products/ProductTable';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -167,54 +161,7 @@ function AdminProdcuts() {
                 ) : error ? (
                   <Typography color="error">{error}</Typography>
                 ) : (
-                  <TableContainer>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>ID</TableCell>
-                          <TableCell>NAME</TableCell>
-                          <TableCell>PRICE</TableCell>
-                          <TableCell>CATEGORY</TableCell>
-                          <TableCell>COUNT</TableCell>
-                          <TableCell>RATING</TableCell>
-                          <TableCell>ACTIONS</TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {products.map((product) => (
-                          <TableRow key={product._id}>
-                            <TableCell>
-                              {product._id.substring(20, 24)}
-                            </TableCell>
-                            <TableCell>{product.name}</TableCell>
-                            <TableCell>${product.price}</TableCell>
-                            <TableCell>{product.category}</TableCell>
-                            <TableCell>{product.countInStock}</TableCell>
-                            <TableCell>{product.rating}</TableCell>
-                            <TableCell>
-                              <NextLink
-                                href={`/admin/product/${product._id}`}
-                                passHref
-                              >
-                                <Button size="small" variant="contained">
-                                  Edit
-                                </Button>
-                              </NextLink>{' '}
-                              <Button
-                                onClick={() => deleteHandler(product._id)}
-                                size="small"
-                                variant="outlined"
-                                color="error"
-                                sx={{ marginLeft: 1 }}
-                              >
-                                Delete
-                              </Button>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
+                  <ProductTable products={products} onDelete={deleteHandler} />
                 )}
               </ListItem>
             </List>

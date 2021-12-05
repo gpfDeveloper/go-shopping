@@ -1,7 +1,6 @@
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import NextLink from 'next/link';
 import React, { useEffect, useContext, useReducer } from 'react';
 import {
   CircularProgress,
@@ -10,19 +9,13 @@ import {
   ListItem,
   Typography,
   Card,
-  Button,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { getError } from 'utils/error';
 import { Store } from 'store/Store';
 import Layout from 'components/layouts/Layout';
 import AdminNav from 'components/admin/AdminNav';
+import UserTable from 'components/user/UserTable';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -126,48 +119,7 @@ function AdminUsers() {
                 ) : error ? (
                   <Typography color="error">{error}</Typography>
                 ) : (
-                  <TableContainer>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>ID</TableCell>
-                          <TableCell>NAME</TableCell>
-                          <TableCell>EMAIL</TableCell>
-                          <TableCell>ADMIN</TableCell>
-                          <TableCell>ACTIONS</TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {users.map((user) => (
-                          <TableRow key={user._id}>
-                            <TableCell>{user._id.substring(20, 24)}</TableCell>
-                            <TableCell>{user.name}</TableCell>
-                            <TableCell>{user.email}</TableCell>
-                            <TableCell>{user.isAdmin ? 'YES' : 'NO'}</TableCell>
-                            <TableCell>
-                              <NextLink
-                                href={`/admin/user/${user._id}`}
-                                passHref
-                              >
-                                <Button size="small" variant="contained">
-                                  Edit
-                                </Button>
-                              </NextLink>{' '}
-                              <Button
-                                onClick={() => deleteHandler(user._id)}
-                                size="small"
-                                variant="outlined"
-                                color="error"
-                                sx={{ marginLeft: 1 }}
-                              >
-                                Delete
-                              </Button>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
+                  <UserTable users={users} onDelete={deleteHandler} />
                 )}
               </ListItem>
             </List>

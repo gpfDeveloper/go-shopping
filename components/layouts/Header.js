@@ -27,7 +27,6 @@ export default function Header({ onSidebarOpen }) {
   }
   return (
     <AppBar
-      position="static"
       sx={{
         backgroundColor: '#342c44',
         '& a': {

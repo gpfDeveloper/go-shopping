@@ -1,7 +1,6 @@
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import NextLink from 'next/link';
 import React, { useEffect, useContext, useReducer } from 'react';
 import {
   CircularProgress,
@@ -10,12 +9,12 @@ import {
   ListItem,
   Typography,
   Card,
-  ListItemText,
 } from '@mui/material';
 import { getError } from 'utils/error';
 import { Store } from 'store/Store';
 import Layout from 'components/layouts/Layout';
 import OrderTable from 'components/orders/OrderTable';
+import UserNav from 'components/user/UserNav';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -62,20 +61,7 @@ function OrderHistory() {
     <Layout title="Order History">
       <Grid container spacing={1}>
         <Grid item md={3} xs={12}>
-          <Card>
-            <List>
-              <NextLink href="/profile" passHref>
-                <ListItem button component="a">
-                  <ListItemText primary="User Profile"></ListItemText>
-                </ListItem>
-              </NextLink>
-              <NextLink href="/order-history" passHref>
-                <ListItem selected button component="a">
-                  <ListItemText primary="Order History"></ListItemText>
-                </ListItem>
-              </NextLink>
-            </List>
-          </Card>
+          <UserNav path="order-history" />
         </Grid>
         <Grid item md={9} xs={12}>
           <Card>

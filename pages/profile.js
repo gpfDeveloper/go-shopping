@@ -1,7 +1,6 @@
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import NextLink from 'next/link';
 import React, { useEffect, useContext } from 'react';
 import {
   Grid,
@@ -10,7 +9,6 @@ import {
   Typography,
   Card,
   Button,
-  ListItemText,
   TextField,
 } from '@mui/material';
 import { getError } from 'utils/error';
@@ -20,6 +18,7 @@ import Layout from 'components/layouts/Layout';
 import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
+import UserNav from 'components/user/UserNav';
 
 function Profile() {
   const { state, dispatch } = useContext(Store);
@@ -68,20 +67,7 @@ function Profile() {
     <Layout title="Profile">
       <Grid container spacing={1}>
         <Grid item md={3} xs={12}>
-          <Card>
-            <List>
-              <NextLink href="/profile" passHref>
-                <ListItem selected button component="a">
-                  <ListItemText primary="User Profile"></ListItemText>
-                </ListItem>
-              </NextLink>
-              <NextLink href="/order-history" passHref>
-                <ListItem button component="a">
-                  <ListItemText primary="Order History"></ListItemText>
-                </ListItem>
-              </NextLink>
-            </List>
-          </Card>
+          <UserNav path="profile" />
         </Grid>
         <Grid item md={9} xs={12}>
           <Card>

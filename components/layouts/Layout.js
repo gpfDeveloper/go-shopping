@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { getError } from 'utils/error';
 import { useSnackbar } from 'notistack';
 import axios from 'axios';
-import { Container } from '@mui/material';
+import { Container, useMediaQuery } from '@mui/material';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -66,6 +66,8 @@ export default function Layout({ title, description, children }) {
     fetchCategories();
   }, []);
 
+  const isDesktop = useMediaQuery('(min-width:600px)');
+
   return (
     <>
       <Head>
@@ -84,7 +86,7 @@ export default function Layout({ title, description, children }) {
         <Container
           component="main"
           sx={{
-            marginTop: 2,
+            marginTop: isDesktop ? 12 : 24,
             minHeight: '80vh',
           }}
         >
