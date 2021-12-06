@@ -21,16 +21,16 @@ const PAGE_SIZE = 3;
 
 const prices = [
   {
-    name: '$1 to $50',
-    value: '1-50',
+    name: '$1 to $10',
+    value: '1-10',
   },
   {
-    name: '$51 to $200',
-    value: '51-200',
+    name: '$10 to $50',
+    value: '11-50',
   },
   {
-    name: '$201 to $1000',
-    value: '201-1000',
+    name: '$50 to $1000',
+    value: '51-1000',
   },
 ];
 
