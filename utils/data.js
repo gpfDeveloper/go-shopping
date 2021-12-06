@@ -93,6 +93,30 @@ const data = {
       description:
         'Starbucks Dark Roast Whole Bean Coffee — Espresso Roast — 100% Arabica — 1 bag (18 oz.)',
     },
+    {
+      name: 'Lindt Excellence Bar',
+      category: 'Chocolate',
+      image: '/images/07_exceBar_Chocolate_Lindt.jpg',
+      price: 33.36,
+      brand: 'Lindt',
+      rating: 5,
+      numReviews: 0,
+      countInStock: 20,
+      description:
+        'Lindt Excellence Bar, 90% Cocoa Supreme Dark Chocolate, Gluten Free, Great for Holiday Gifting, 3.5 Ounce (Pack of 12)',
+    },
+    {
+      name: 'Organic Dark Chocolate Bar',
+      category: 'Chocolate',
+      image: '/images/08_organicDark_Chocolate_GreenBlack.jpg',
+      price: 28.86,
+      brand: 'Green & Black',
+      rating: 4,
+      numReviews: 0,
+      countInStock: 3,
+      description:
+        'Green & Black Organic Dark Chocolate Bar, 85% Cacao, Christmas Chocolate Gift Stocking Stuffers, - 3.17 oz Bars (Pack of 10)',
+    },
   ],
 };
 export default data;
