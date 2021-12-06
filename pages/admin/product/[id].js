@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import slugify from 'slugify';
+import { getSlug } from 'utils';
 import React, { useEffect, useContext, useReducer, useState } from 'react';
 import {
   Grid,
@@ -89,15 +89,13 @@ function ProductEdit() {
   const [isFeatured, setIsFeatured] = useState(false);
   const { userInfo } = state;
 
-  const [productName, productBrand, productCategory] = watch([
+  const [productName, productCategory, productBrand] = watch([
     'name',
-    'brand',
     'category',
+    'brand',
   ]);
-  let slug;
-  if (productName && productBrand && productCategory) {
-    slug = productName + '-' + productBrand + '-' + productCategory;
-    slug = slugify(slug);
+  if (productName && productCategory && productBrand) {
+    const slug = getSlug(productName, productCategory, productBrand);
     setValue('slug', slug);
   }
 
