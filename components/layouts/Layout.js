@@ -87,7 +87,7 @@ export default function Layout({ title, description, children }) {
           component="main"
           sx={{
             marginTop: isDesktop ? 12 : 24,
-            minHeight: '80vh',
+            minHeight: '100vh',
           }}
         >
           {children}

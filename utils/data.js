@@ -8,15 +8,15 @@ const data = {
       isAdmin: true,
     },
     {
-      name: 'Jane',
-      email: 'user@example.com',
+      name: 'John',
+      email: 'john@example.com',
       password: bcrypt.hashSync('123456'),
       isAdmin: false,
     },
   ],
   products: [
     {
-      name: 'Super Crema',
+      name: 'Super Crema Coffee',
       category: 'Coffee',
       image: '/images/01_superCrema_coffee_lavazza.jpg',
       isFeatured: true,
@@ -30,7 +30,7 @@ const data = {
         'Lavazza Super Crema Whole Bean Coffee Blend, Medium Espresso Roast, 2.2 Pound (Pack of 6), Authentic Italian, Blended and roasted in Italy, Value Pack, Mild and creamy',
     },
     {
-      name: 'Qualita Rossa',
+      name: 'Qualita Rossa Coffee',
       category: 'Coffee',
       image: '/images/02_qualitaRossa_coffee_lavazza.jpg',
       isFeatured: true,
@@ -44,7 +44,7 @@ const data = {
         'Lavazza Qualita Rossa, Italian Coffee Beans Expresso, 2.2lb ,Authentic Italian, Blended and roasted in Italy, gluten_free, Chocolaty flavor, Full body, intense aromas',
     },
     {
-      name: 'Perfetto Ground',
+      name: 'Perfetto Ground Coffee',
       category: 'Coffee',
       image: '/images/03_perfettoGround_coffee_lavazza.jpg',
       price: 10.8,
@@ -56,7 +56,7 @@ const data = {
         'Lavazza Perfetto Ground Coffee Blend, Dark Roast, 20 Ounce Authentic Italian, Gluten Free, Blended And Roated in Italy, Value Pack, Caramel flavor with Dark and Velvety Texture',
     },
     {
-      name: 'Blu Espresso Ground',
+      name: 'Blu Espresso Ground Coffee',
       category: 'Coffee',
       image: '/images/04_bluEspressoGround_coffee_lavazza.jpg',
       price: 33.79,
@@ -68,7 +68,7 @@ const data = {
         'Lavazza in Blu Espresso Ground Coffee Blend, Medium Espresso Roast, 8.8-Ounce Cans (Pack of 4)',
     },
     {
-      name: 'Fog Chaser',
+      name: 'Fog Chaser Coffee',
       category: 'Coffee',
       image: '/images/05_fogChaser_coffee_SanFranciscoBay.jpg',
       price: 18.99,
@@ -80,7 +80,7 @@ const data = {
         'SF Bay Coffee Fog Chaser Whole Bean 2LB (32 Ounce) Medium Dark Roast',
     },
     {
-      name: 'Espresso Roast',
+      name: 'Espresso Roast Coffee',
       category: 'Coffee',
       image: '/images/06_espressoRoast_coffee_Starbucks.jpg',
       price: 9.98,
@@ -94,7 +94,7 @@ const data = {
         'Starbucks Dark Roast Whole Bean Coffee — Espresso Roast — 100% Arabica — 1 bag (18 oz.)',
     },
     {
-      name: 'Lindt Excellence Bar',
+      name: 'Lindt Excellence Chocolate Bar',
       category: 'Chocolate',
       image: '/images/07_exceBar_Chocolate_Lindt.jpg',
       price: 33.36,
