@@ -20,7 +20,7 @@ export default function Products({ products }) {
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
   };
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} justifyContent="center">
       {products.map((product) => (
         <Grid item md={4} key={product._id}>
           <ProductItem product={product} addToCartHandler={addToCartHandler} />
