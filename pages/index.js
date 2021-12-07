@@ -32,7 +32,6 @@ export async function getServerSideProps() {
       rating: -1,
     })
     .limit(6);
-  await db.disconnect();
   return {
     props: {
       featuredProducts: featuredProductsDocs.map(db.convertDocToObj),

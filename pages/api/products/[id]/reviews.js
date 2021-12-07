@@ -12,7 +12,6 @@ const handler = nextConnect({
 handler.get(async (req, res) => {
   db.connect();
   const product = await Product.findById(req.query.id);
-  db.disconnect();
   if (product) {
     res.send(product.reviews);
   } else {
@@ -43,7 +42,6 @@ handler.use(isAuth).post(async (req, res) => {
         updatedProduct.reviews.length;
       await updatedProduct.save();
 
-      await db.disconnect();
       return res.send({ message: 'Review updated' });
     } else {
       const review = {
@@ -58,13 +56,11 @@ handler.use(isAuth).post(async (req, res) => {
         product.reviews.reduce((a, c) => c.rating + a, 0) /
         product.reviews.length;
       await product.save();
-      await db.disconnect();
       res.status(201).send({
         message: 'Review submitted',
       });
     }
   } else {
-    await db.disconnect();
     res.status(404).send({ message: 'Product Not Found' });
   }
 });

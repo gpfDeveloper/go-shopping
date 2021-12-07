@@ -289,7 +289,6 @@ export async function getServerSideProps({ query }) {
     ...brandFilter,
     ...ratingFilter,
   });
-  await db.disconnect();
 
   const products = productDocs.map(db.convertDocToObj);
 

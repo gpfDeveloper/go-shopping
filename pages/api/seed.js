@@ -20,7 +20,6 @@ handler.get(async (req, res) => {
     }))
   );
   await Order.deleteMany();
-  await db.disconnect();
   res.send({ message: 'seeded successfully' });
 });
 
