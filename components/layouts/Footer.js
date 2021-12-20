@@ -13,9 +13,7 @@ export default function Footer() {
         color: '#fff',
       }}
     >
-      <Typography>
-        Copyright &copy; {new Date().getFullYear()} Pengfei Gao
-      </Typography>
+      <Typography>Developed by Pengfei Gao</Typography>
     </Box>
   );
 }
